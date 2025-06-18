@@ -7,6 +7,7 @@
   color: #f0f4f8;
 }
 
+// Container principal
 .curriculos-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -20,7 +21,22 @@
   color: #1a2637;
 }
 
-.container-cadastro-curriculo {
+// Título principal
+.main-title h1 {
+  font-weight: 700;
+  color: #f5faff;
+  font-size: 2.3rem;
+}
+
+// Título da seção do formulário
+.form-title-container h2 {
+  font-size: 1.6rem;
+  color: #2c3e70;
+  font-weight: 600;
+}
+
+// Formulário com cartão
+.container-cadastro {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
@@ -35,6 +51,7 @@
   font-size: 1rem;
 }
 
+// Grupo de inputs
 .input-group {
   display: flex;
   flex-direction: column;
@@ -44,19 +61,26 @@
   border: 1.5px solid #a7c1f7;
   border-radius: 14px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus-within {
+    border-color: #357abd;
+    box-shadow: 0 0 10px rgba(53, 122, 189, 0.5);
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+    box-shadow: 0 0 8px rgba(211, 47, 47, 0.6);
+  }
 }
 
-.input-group:focus-within {
-  border-color: #357abd;
-  box-shadow: 0 0 10px rgba(53, 122, 189, 0.5);
-}
-
+// Labels
 .form-label {
   font-weight: 600;
   color: #2c3e70;
   font-size: 1.05rem;
 }
 
+// Inputs e textarea
 input,
 textarea {
   border-radius: 10px !important;
@@ -67,20 +91,36 @@ textarea {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   color: #1a2637;
   background-color: #f5faff;
+
+  &::placeholder {
+    color: #a3b5d9;
+  }
+
+  &:focus {
+    border-color: #1e3c72 !important;
+    box-shadow: 0 0 12px rgba(30, 60, 114, 0.6);
+    outline: none;
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+    background-color: #ffecec;
+  }
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #a3b5d9;
+// Mensagens de erro
+.text-danger.small {
+  font-size: 0.85rem;
+  margin-top: 4px;
 }
 
-input:focus,
-textarea:focus {
-  border-color: #1e3c72 !important;
-  box-shadow: 0 0 12px rgba(30, 60, 114, 0.6);
-  outline: none;
+// Asterisco obrigatório
+.required {
+  color: #d32f2f;
+  font-weight: 700;
 }
 
+// Botões
 .btn {
   font-weight: 600;
   border-radius: 12px;
@@ -88,11 +128,11 @@ textarea:focus {
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
-}
 
-.btn i {
-  margin-right: 6px;
-  font-size: 1.1rem;
+  i {
+    margin-right: 6px;
+    font-size: 1.1rem;
+  }
 }
 
 .btn-outline-secondary {
@@ -100,38 +140,35 @@ textarea:focus {
   color: #4a90e2;
   background-color: transparent;
   box-shadow: none;
-}
 
-.btn-outline-secondary:hover {
-  background-color: #357abd;
-  color: white;
-  box-shadow: 0 6px 15px rgba(53, 122, 189, 0.7);
+  &:hover {
+    background-color: #357abd;
+    color: white;
+    box-shadow: 0 6px 15px rgba(53, 122, 189, 0.7);
+  }
 }
 
 .btn-primary {
   background: linear-gradient(90deg, #4a90e2, #357abd);
   border: none;
   color: white;
-  box-shadow: 0 8px 20px rgba(53, 122, 189, 0.8);
   font-size: 1rem;
   letter-spacing: 0.04em;
+
+  &:hover {
+    background: linear-gradient(90deg, #2c65b6, #1e3c72);
+    box-shadow: 0 10px 25px rgba(30, 60, 114, 0.9);
+  }
+
+  &:disabled {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
 }
 
-.btn-primary:hover {
-  background: linear-gradient(90deg, #2c65b6, #1e3c72);
-  box-shadow: 0 10px 25px rgba(30, 60, 114, 0.9);
-}
-
-.btn-group {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.required {
-  color: #d32f2f;
-  font-weight: 700;
-}
-
+// Tabela moderna
 .table {
   border-radius: 18px;
   overflow: hidden;
@@ -139,38 +176,49 @@ textarea:focus {
   box-shadow: 0 10px 25px rgba(21, 101, 192, 0.25);
   width: 100%;
   color: #1a2637;
+
+  thead th {
+    background-color: #2c3e70;
+    color: #f0f4f8;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  td,
+  th {
+    vertical-align: middle;
+    padding: 0.85rem 1rem;
+    font-weight: 500;
+  }
+
+  button {
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
 }
 
-.table thead th {
-  background-color: #2c3e70;
-  color: #f0f4f8;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
-}
-
-.table td,
-.table th {
-  vertical-align: middle;
-  padding: 0.85rem 1rem;
-  font-weight: 500;
-}
-
-.table button {
-  padding: 0.35rem 0.75rem;
-  font-weight: 600;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
+// Responsividade
 @media (max-width: 768px) {
   :host {
     padding: 2rem 1rem;
   }
+
   .curriculos-container {
     padding: 2rem 1rem;
   }
-  .container-cadastro-curriculo {
+
+  .container-cadastro {
     padding: 1.5rem 1.2rem;
+  }
+
+  .form-title-container h2 {
+    font-size: 1.3rem;
+  }
+
+  .main-title h1 {
+    font-size: 1.8rem;
   }
 }

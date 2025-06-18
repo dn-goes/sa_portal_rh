@@ -1,54 +1,120 @@
-<h2>Cadastrar</h2>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<!-- formulário para mostrar vága selecionada -->
-<form action="">
-  <label for="">ID</label>
-  <input type="text" [(ngModel)]="vaga.id"> <br>
+<!-- Título geral fora do container -->
+<header class="main-title mb-4 text-center">
+  <h1><i class="bi bi-ui-checks-grid me-2"></i> Currículos e Vagas</h1>
+</header>
 
-  <label for="">Nome</label>
-  <input type="text" [(ngModel)]="vaga.nome"> <br>
+<!-- Container que engloba o formulário e a lista -->
+<div class="vagas-container">
 
-  <label for="">Foto</label>
-  <input type="text" [(ngModel)]="vaga.foto"> <br>
+  <!-- Título específico do formulário separado, posicionado antes do formulário -->
+  <section class="form-title-container">
+    <h2>
+      <i class="bi bi-pencil-square me-2"></i>
+      {{ vaga.id === 0 ? 'Cadastrar Nova Vaga' : 'Editando: ' + vaga.nome }}
+    </h2>
+  </section>
 
-  <label for="">Descrição</label>
-  <input type="text" [(ngModel)]="vaga.descricao"> <br>
+ <section class="form-card">
+  <form (ngSubmit)="onSubmit()" novalidate>
+    <div class="container-cadastro">
 
-  <label for="">Salário</label>
-  <input type="text" [(ngModel)]="vaga.salario"> <br>
+      <div class="input-group">
+        <label for="nome" class="form-label">Nome da Vaga <span class="required">*</span></label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          class="form-control"
+          [(ngModel)]="vaga.nome"
+          required
+          placeholder="Ex: Desenvolvedor Front-end"
+        />
+      </div>
 
-  <button type="button" (click)="cadastrarVaga()">Cadastrar Vaga</button>
-  <button type="button" (click)="atualizarVaga(vaga.id)">Atualizar Vaga</button>
-  <button type="button" (click)="excluirVaga(vaga.id)">Excluir Vaga</button>
+      <div class="input-group">
+        <label for="salario" class="form-label">Salário (R$) <span class="required">*</span></label>
+        <input
+          type="number"
+          id="salario"
+          name="salario"
+          class="form-control"
+          [(ngModel)]="vaga.salario"
+          required
+          placeholder="Ex: 4000.00"
+        />
+      </div>
 
-</form>
+      <div class="input-group">
+        <label for="descricao" class="form-label">Descrição da Vaga</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          class="form-control"
+          rows="3"
+          [(ngModel)]="vaga.descricao"
+          placeholder="Descreva os requisitos, funções, etc."
+        ></textarea>
+      </div>
 
-<!-- Tabela com as vagas já cadastradas -->
-<section class="listar-vagas">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Código da Vaga</th>
-        <th>Vaga</th>
-        <th>Descrição da Vaga</th>
-        <th>Salário</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="vaga-row" *ngFor="let vaga of vagas">
-        <td>{{vaga.id}}</td>
-        <td>{{vaga.nome}}</td>
-        <td>{{vaga.descricao}}</td>
-        <td>R$ {{vaga.salario}},00</td>
-        <td>
-          <button class="btn-listar" type="button" (click)="listarVagaPorId(vaga)">
-            Listar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <div class="input-group">
+        <label for="foto" class="form-label">URL da Foto</label>
+        <input
+          type="url"
+          id="foto"
+          name="foto"
+          class="form-control"
+          [(ngModel)]="vaga.foto"
+          placeholder="https://exemplo.com/imagem.jpg"
+        />
+      </div>
+
+      <div class="btn-group d-flex justify-content-end gap-2 mt-3">
+        <button type="button" class="btn btn-outline-secondary" (click)="resetarFormulario()">
+          <i class="bi bi-x-circle me-1"></i> Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-check-circle me-1"></i> {{ vaga.id > 0 ? 'Atualizar' : 'Cadastrar' }}
+        </button>
+      </div>
+    </div>
+  </form>
 </section>
 
-<div class="rodape"></div>
+
+  <section>
+    <h3 class="mb-3"><i class="bi bi-list-task me-2"></i>Vagas Cadastradas</h3>
+    <div class="table-responsive shadow-sm rounded-3 overflow-hidden">
+      <table class="table table-hover table-bordered align-middle text-center modern-table">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Salário</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of vagas">
+            <td>{{ v.id }}</td>
+            <td>{{ v.nome }}</td>
+            <td>{{ v.salario | currency:'BRL':'symbol':'1.2-2' }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm me-2" (click)="editarVaga(v)">
+                <i class="bi bi-pencil-fill"></i> Editar
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="excluirVaga(v.id)">
+                <i class="bi bi-trash-fill"></i> Excluir
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="vagas.length === 0">
+            <td colspan="4" class="text-muted">Nenhuma vaga cadastrada.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

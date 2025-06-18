@@ -29,8 +29,8 @@ import { PainelCurriculosComponent } from './views/painel-curriculos/painel-curr
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule, // Correto! Necessário para o VagasService.
+    FormsModule       // Correto! Necessário para o [(ngModel)] no formulário.
   ],
   providers: [],
   bootstrap: [AppComponent]

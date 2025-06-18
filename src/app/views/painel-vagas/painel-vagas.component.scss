@@ -1,168 +1,189 @@
-// Variáveis de cor
-$primaria: #007bff;
-$secundaria: #6c757d;
-$sucesso: #28a745;
-$alerta: #dc3545;
-$aviso: #ffc107;
-$background: #f8f9fa;
+:host {
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  background: linear-gradient(135deg, #4a90e2 0%, #357ABD 100%);
+  padding: 3rem 1rem;
+  min-height: 100vh;
+  color: #f0f4f8;
+}
 
-// Título
-h2 {
-  text-align: center;
-  padding: 20px;
-  color: #222;
+/* Container principal: fundo branco com sombra e borda arredondada, para destacar do background */
+.vagas-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #ffffffee; /* branco com leve transparência */
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(21, 101, 192, 0.3);
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  color: #1a2637;
+}
+
+/* Container branco com sombra para o formulário, só que agora com degradê sutil azul no fundo */
+.container-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 2rem 3rem;
+  background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(66, 133, 244, 0.3);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #0d1a2b;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Cada grupo de input com fundo branco e sombra suave para contraste */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.2rem;
+  background-color: #ffffffdd;
+  border: 1.5px solid #a7c1f7;
+  border-radius: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: #357abd;
+  box-shadow: 0 0 10px rgba(53, 122, 189, 0.5);
+}
+
+/* Labels com azul escuro */
+.form-label {
+  font-weight: 600;
+  color: #2c3e70;
+  font-size: 1.05rem;
+}
+
+/* Inputs e textarea */
+input,
+textarea {
+  border-radius: 10px !important;
+  border: 1.5px solid #9bbaf9;
+  padding: 0.6rem 0.85rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #1a2637;
+  background-color: #f5faff;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #a3b5d9;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #1e3c72 !important;
+  box-shadow: 0 0 12px rgba(30, 60, 114, 0.6);
+  outline: none;
+}
+
+/* Botões */
+.btn {
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 0.55rem 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+}
+
+.btn i {
+  margin-right: 6px;
+  font-size: 1.1rem;
+}
+
+.btn-outline-secondary {
+  border-color: #4a90e2;
+  color: #4a90e2;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #357abd;
+  color: white;
+  box-shadow: 0 6px 15px rgba(53, 122, 189, 0.7);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  border: none;
+  color: white;
+  box-shadow: 0 8px 20px rgba(53, 122, 189, 0.8);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #2c65b6, #1e3c72);
+  box-shadow: 0 10px 25px rgba(30, 60, 114, 0.9);
+}
+
+/* Grupo de botões alinhado */
+.btn-group {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* Asterisco obrigatório em vermelho forte */
+.required {
+  color: #d32f2f;
   font-weight: 700;
-  letter-spacing: 1px;
 }
 
-// Formulário
-form {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-  padding: 2rem;
-  border-radius: 8px;
-  background: $background;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #222;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-
-  input {
-    width: 100%;
-    padding: 0.8rem 10px;
-    margin-bottom: 1.2rem;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    font-size: 1rem;
-    background: #fff;
-    color: #222;
-    transition: border-color 0.2s;
-
-    &:focus {
-      outline: none;
-      border-color: $primaria;
-      box-shadow: 0 0 0 2px rgba($primaria, 0.1);
-    }
-  }
-
-  button {
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    margin-right: 0.75rem;
-    margin-bottom: 0.5rem;
-    transition: background 0.2s;
-
-    &:nth-of-type(1) {
-      background-color: $sucesso;
-      &:hover {
-        background-color: darken($sucesso, 10%);
-      }
-    }
-    &:nth-of-type(2) {
-      background-color: $primaria;
-      &:hover {
-        background-color: darken($primaria, 10%);
-      }
-    }
-    &:nth-of-type(3) {
-      background-color: $alerta;
-      &:hover {
-        background-color: darken($alerta, 10%);
-      }
-    }
-    &:nth-of-type(4) {
-      background-color: $aviso;
-      color: #222;
-      &:hover {
-        background-color: darken($aviso, 10%);
-      }
-    }
-  }
+/* Tabela geral com fundo branco e sombra leve */
+.table {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffffdd;
+  box-shadow: 0 10px 25px rgba(21, 101, 192, 0.25);
+  width: 100%;
+  color: #1a2637;
 }
 
-// Tabela
-section {
-  max-width: 1300px;
-  margin: 10px auto;
-  padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  overflow-x: auto;
-
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    background: #fff;
-
-    th, td {
-      padding: 14px 10px;
-      border-bottom: 1px solid #ddd;
-      color: #222;
-      text-align: left;
-      vertical-align: middle;
-    }
-
-    thead {
-      background-color: $secundaria;
-      th {
-        color: #fff;
-        font-weight: bold;
-        letter-spacing: 0.5px;
-      }
-    }
-
-    tbody {
-      tr {
-        transition: background 0.2s;
-        &:hover {
-          background-color: #f1f3f5;
-        }
-      }
-      .btn-listar {
-        border: none;
-        background-color: $primaria;
-        color: #fff;
-        padding: 6px 14px;
-        cursor: pointer;
-        border-radius: 4px;
-        font-size: 0.95rem;
-        transition: background 0.2s;
-
-        &:hover {
-          background-color: darken($primaria, 10%);
-        }
-      }
-    }
-  }
+/* Cabeçalho da tabela com azul escuro */
+.table thead th {
+  background-color: #2c3e70;
+  color: #f0f4f8;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
 }
 
-// Rodapé
-.rodape {
-  height: 8vh;
-  background: $background;
-  border-top: 1px solid #eee;
+/* Células da tabela */
+.table td,
+.table th {
+  vertical-align: middle;
+  padding: 0.85rem 1rem;
+  font-weight: 500;
 }
 
-// Responsividade
-@media (max-width: 800px) {
-  form, section {
-    max-width: 98vw;
-    padding: 1rem;
+/* Botões da tabela */
+.table button {
+  padding: 0.35rem 0.75rem;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  :host {
+    padding: 2rem 1rem;
   }
-  .table {
-    font-size: 0.9rem;
+  .vagas-container {
+    padding: 2rem 1rem;
+  }
+  .container-cadastro {
+    padding: 1.5rem 1.2rem;
   }
 }

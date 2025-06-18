@@ -1,58 +1,86 @@
-<h2>Cadastrar</h2>
+<div class="curriculos-container">
 
-<!-- formulário para mostrar currículo selecionado -->
-<form action="">
-  <label for="">ID</label>
-  <input type="text" [(ngModel)]="curriculo.id" name="id"> <br>
+  <section class="container-cadastro-curriculo">
+    <h2 class="text-center mb-4"><i class="bi bi-person-plus-fill me-2"></i>Cadastro de Currículo</h2>
 
-  <label for="">Nome</label>
-  <input type="text" [(ngModel)]="curriculo.nome" name="nome"> <br>
+    <div class="input-group">
+      <label class="form-label">ID</label>
+      <input type="text" [(ngModel)]="curriculo.id" name="id" placeholder="ID único" />
+    </div>
 
-  <label for="">Idade</label>
-  <input type="number" [(ngModel)]="curriculo.idade" name="idade"> <br>
+    <div class="input-group">
+      <label class="form-label">Nome</label>
+      <input type="text" [(ngModel)]="curriculo.nome" name="nome" placeholder="Nome completo" />
+    </div>
 
-  <label for="">Telefone</label>
-  <input type="text" [(ngModel)]="curriculo.telefone" name="telefone"> <br>
+    <div class="input-group">
+      <label class="form-label">Idade</label>
+      <input type="number" [(ngModel)]="curriculo.idade" name="idade" placeholder="Ex: 25" />
+    </div>
 
-  <label for="">Email</label>
-  <input type="email" [(ngModel)]="curriculo.email" name="email"> <br>
+    <div class="input-group">
+      <label class="form-label">Telefone</label>
+      <input type="text" [(ngModel)]="curriculo.telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" />
+    </div>
 
-  <label for="">Descrição</label>
-  <input type="text" [(ngModel)]="curriculo.descricao" name="descricao"> <br>
+    <div class="input-group">
+      <label class="form-label">Email</label>
+      <input type="email" [(ngModel)]="curriculo.email" name="email" placeholder="email@exemplo.com" />
+    </div>
 
-  <button type="button" (click)="cadastrarCurriculo()">Cadastrar Currículo</button>
-  <button type="button" (click)="atualizarCurriculo(curriculo.id)">Atualizar Currículo</button>
-  <button type="button" (click)="excluirCurriculo(curriculo.id)">Excluir Currículo</button>
-</form>
+    <div class="input-group">
+      <label class="form-label">Descrição</label>
+      <textarea [(ngModel)]="curriculo.descricao" name="descricao" placeholder="Ex: Experiência, competências..."></textarea>
+    </div>
 
-<!-- Tabela com os currículos já cadastrados -->
-<section class="listar-curriculos">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Idade</th>
-        <th>Telefone</th>
-        <th>Email</th>
-        <th>Descrição</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let curriculo of curriculos">
-        <td>{{curriculo.id}}</td>
-        <td>{{curriculo.nome}}</td>
-        <td>{{curriculo.idade}}</td>
-        <td>{{curriculo.telefone}}</td>
-        <td>{{curriculo.email}}</td>
-        <td>{{curriculo.descricao}}</td>
-        <td>
-          <button type="button" (click)="listarCurriculoPorId(curriculo)">Editar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+    <div class="btn-group justify-content-end mt-3">
+      <button type="button" class="btn btn-outline-secondary" (click)="resetarFormularioCurriculo()">
+        <i class="bi bi-x-circle-fill"></i> Cancelar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="cadastrarCurriculo()">
+        <i class="bi bi-check-circle-fill"></i> Cadastrar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="atualizarCurriculo(curriculo.id)">
+        <i class="bi bi-arrow-repeat"></i> Atualizar
+      </button>
+    </div>
+  </section>
 
-<div class="rodape"></div>
+  <section>
+    <h3 class="text-center mt-5 mb-4"><i class="bi bi-card-list me-2"></i>Currículos Cadastrados</h3>
+    <div class="table-responsive">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Descrição</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curriculo of curriculos">
+            <td>{{curriculo.id}}</td>
+            <td>{{curriculo.nome}}</td>
+            <td>{{curriculo.idade}}</td>
+            <td>{{curriculo.telefone}}</td>
+            <td>{{curriculo.email}}</td>
+            <td>{{curriculo.descricao}}</td>
+            <td>
+              <button type="button" class="btn btn-warning btn-sm" (click)="listarCurriculoPorId(curriculo)">
+                <i class="bi bi-pencil-fill"></i> Editar
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="curriculos.length === 0">
+            <td colspan="7" class="text-muted">Nenhum currículo cadastrado.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
